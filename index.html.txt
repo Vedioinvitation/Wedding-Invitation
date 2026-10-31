@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Wedding Invitation</title>
+
+<style>
+:root {
+    --cream: #fff9f2;
+    --pink: #e9b9b9;
+    --rose: #a65e68;
+    --gold: #b99a59;
+    --dark: #49383b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--cream);
+    color: var(--dark);
+    text-align: center;
+    overflow-x: hidden;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+/* Opening screen */
+
+.opening {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    background:
+        radial-gradient(circle at top, #fff 0%, transparent 65%),
+        var(--cream);
+}
+
+.eyebrow {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.opening h1 {
+    font-size: clamp(32px, 6vw, 60px);
+    font-weight: normal;
+    color: var(--rose);
+    margin-bottom: 12px;
+}
+
+.opening p {
+    line-height: 1.8;
+}
+
+.envelope {
+    position: relative;
+    width: min(300px, 85vw);
+    height: 190px;
+    margin: 55px auto 35px;
+    background: #e8c8bf;
+    cursor: pointer;
+    box-shadow: 0 15px 35px #6c45451b;
+    perspective: 800px;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #f1dcd2;
+    clip-path: polygon(0 0, 50% 55%, 100% 0);
+    z-index: 3;
+    transform-origin: top;
+    transition: transform 0.9s ease;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #dcb7ad;
+    clip-path: polygon(0 0, 50% 65%, 100% 0, 100% 100%, 0 100%);
+    z-index: 2;
+}
+
+.letter {
+    position: absolute;
+    width: 85%;
+    height: 155px;
+    left: 7.5%;
+    top: 15px;
+    padding: 22px 10px;
+    background: #fffaf4;
+    color: var(--rose);
+    transition: transform 1s ease;
+    z-index: 1;
+    line-height: 1.8;
+}
+
+.seal {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--rose);
+    color: white;
+    left: calc(50% - 22px);
+    top: 80px;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    box-shadow: 0 3px 10px #0002;
+    transition: opacity 0.5s;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .letter {
+    transform: translateY(-115px);
+    z-index: 5;
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+.open-button,
+.rsvp-button {
+    padding: 14px 32px;
+    border: 1px solid var(--rose);
+    color: white;
+    background: var(--rose);
+    letter-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.open-button:hover,
+.rsvp-button:hover {
+    background: #864852;
+}
+
+/* Main invitation */
+
+.invitation {
+    display: none;
+}
+
+.invitation.visible {
+    display: block;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    padding: 85px 20px;
+}
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+        linear-gradient(#fff9f2a8, #fff9f2d9),
+        radial-gradient(ellipse at center, #f3d6d0, #fff9f2 70%);
+    border: 12px solid #f0dfd3;
+    outline: 1px solid var(--gold);
+    outline-offset: -20px;
+    padding: 60px 20px;
+}
+
+.flower {
+    color: var(--rose);
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero h2 {
+    font-weight: normal;
+    font-size: clamp(38px, 8vw, 76px);
+    color: var(--rose);
+    line-height: 1.2;
+    margin: 25px 0;
+}
+
+.ampersand {
+    color: var(--gold);
+    font-style: italic;
+}
+
+.hero .subtitle {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-top: 15px;
+}
+
+.divider {
+    width: 90px;
+    height: 1px;
+    background: var(--gold);
+    margin: 28px auto;
+}
+
+.section-title {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: normal;
+    color: var(--rose);
+    margin-bottom: 20px;
+}
+
+.description {
+    max-width: 550px;
+    margin: auto;
+    line-height: 2;
+    font-size: 16px;
+}
+
+/* Countdown */
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.countdown div {
+    min-width: 65px;
+}
+
+.countdown strong {
+    display: block;
+    font-size: 34px;
+    font-weight: normal;
+    color: var(--rose);
+}
+
+.countdown span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Events */
+
+.events {
+    background: #f6e9e3;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    max-width: 850px;
+    margin: 40px auto 0;
+}
+
+.event-card {
+    background: #fffaf5;
+    border: 1px solid #e5c9bd;
+    padding: 35px 20px;
+    line-height: 2;
+}
+
+.event-card .icon {
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.event-card h3 {
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--rose);
+    margin-bottom: 12px;
+}
+
+.event-card p {
+    font-size: 14px;
+}
+
+/* Photo area */
+
+.photo-frame {
+    max-width: 600px;
+    margin: 35px auto;
+    min-height: 260px;
+    padding: 15px;
+    border: 1px solid var(--gold);
+    background: white;
+}
+
+.photo-frame img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-placeholder {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #f8eee8;
+    color: var(--rose);
+    gap: 15px;
+}
+
+/* RSVP */
+
+.rsvp {
+    background: #f6e9e3;
+}
+
+.rsvp-form {
+    max-width: 480px;
+    margin: 35px auto 0;
+    text-align: left;
+}
+
+.rsvp-form label {
+    display: block;
+    margin: 18px 0 8px;
+    font-size: 14px;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddc4bb;
+    background: #fffaf5;
+    color: var(--dark);
+    border-radius: 0;
+}
+
+.rsvp-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.rsvp-form .rsvp-button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+#rsvpMessage {
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* Footer */
+
+footer {
+    padding: 50px 20px;
+    background: #ead7cd;
+    line-height: 2;
+}
+
+footer h2 {
+    color: var(--rose);
+    font-weight: normal;
+    font-size: 30px;
+}
+
+.music-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: #fffaf2;
+    color: var(--rose);
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 20;
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 65px 18px;
+    }
+
+    .hero {
+        min-height: 80vh;
+    }
+
+    .countdown {
+        gap: 18px;
+    }
+
+    .countdown strong {
+        font-size: 27px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Opening envelope -->
+
+<div class="opening" id="opening">
+
+    <div class="eyebrow">A Special Invitation</div>
+
+    <h1>We're Getting Married</h1>
+
+    <p>Two hearts, one beautiful journey.</p>
+
+    <div class="envelope" id="envelope"
+         role="button"
+         tabindex="0"
+         aria-label="Open wedding invitation">
+
+        <div class="letter">
+            <p>With love and joy</p>
+            <p><strong>You're Invited</strong></p>
+            <p>To celebrate our forever</p>
+        </div>
+
+        <div class="seal">?</div>
+    </div>
+
+    <button class="open-button" id="openButton">
+        Open Invitation ?
+    </button>
+
+</div>
+
+<!-- Invitation content -->
+
+<main class="invitation" id="invitation">
+
+    <section class="hero">
+
+        <div class="flower">?</div>
+
+        <p class="eyebrow">Together With Our Families</p>
+
+        <!-- CHANGE THE NAMES HERE -->
+
+        <h2>
+            <span id="partnerOne">Nandini</span>
+            <br>
+            <span class="ampersand">&</span>
+            <br>
+            <span id="partnerTwo">Anirban</span>
+        </h2>
+
+        <div class="divider"></div>
+
+        <p class="subtitle">Invite You To Celebrate Our Wedding</p>
+
+        <p style="margin-top:30px; line-height:2;">
+            A new chapter begins,<br>
+            a lifetime of love awaits.
+        </p>
+
+        <p id="weddingDateText" style="margin-top:25px;">
+            12 December 2026
+        </p>
+
+    </section>
+
+    <!-- Welcome -->
+
+    <section>
+
+        <div class="flower">?</div>
+
+        <h2 class="section-title">Our Story, Our Forever</h2>
+
+        <div class="divider"></div>
+
+        <p class="description">
+            With hearts full of happiness and gratitude,
+            we invite you to join us as we begin a beautiful
+            new chapter together. Your presence will make
+            our celebration even more special.
+        </p>
+
+    </section>
+
+    <!-- Countdown -->
+
+    <section>
+
+        <p class="eyebrow">The Big Day</p>
+
+        <h2 class="section-title">Counting Down To Forever</h2>
+
+        <div class="countdown">
+
+            <div>
+                <strong id="days">00</strong>
+                <span>Days</span>
+            </div>
+
+            <div>
+                <strong id="hours">00</strong>
+                <span>Hours</span>
+            </div>
+
+            <div>
+                <strong id="minutes">00</strong>
+                <span>Minutes</span>
+            </div>
+
+            <div>
+                <strong id="seconds">00</strong>
+                <span>Seconds</span>
+            </div>
+
+        </div>
+
+        <p id="countdownMessage" style="margin-top:25px;"></p>
+
+    </section>
+
+    <!-- Wedding events -->
+
+    <section class="events">
+
+        <p class="eyebrow">Save The Date</p>
+
+        <h2 class="section-title">Wedding Celebrations</h2>
+
+        <div class="divider"></div>
+
+        <div class="event-grid">
+
+            <div class="event-card">
+
+                <div class="icon">?</div>
+
+                <h3>Mehendi</h3>
+
+                <p>11 December 2026</p>
+
+                <p>4:00 PM onwards</p>
+
+                <p>Celebration Garden</p>
+
+            </div>
+
+            <div class="event-card">
+
+                <div class="icon">?</div>
+
+                <h3>Wedding Ceremony</h3>
+
+                <p>12 December 2026</p>
+
+                <p>7:00 PM onwards</p>
+
+                <p>Royal Wedding Venue</p>
+
+            </div>
+
+            <div class="event-card">
+
+                <div class="icon">?</div>
+
+                <h3>Reception</h3>
+
+                <p>13 December 2026</p>
+
+                <p>6:00 PM onwards</p>
+
+                <p>Grand Celebration Hall</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Photo section -->
+
+    <section>
+
+        <p class="eyebrow">A Moment To Remember</p>
+
+        <h2 class="section-title">Our Beautiful Beginning</h2>
+
+        <div class="photo-frame">
+
+            <div class="photo-placeholder" id="photoPlaceholder">
+
+                <div style="font-size:45px;">?</div>
+
+                <p>Add Your Favourite Couple Photo</p>
+
+                <p style="font-size:12px;">
+                    Replace this area with your own photograph.
+                </p>
+
+            </div>
+
+            <!--
+            To add a photo, replace the placeholder above with:
+
+            <img src="couple.jpg" alt="Our wedding photograph">
+
+            Keep couple.jpg in the same folder as index.html.
+            -->
+
+        </div>
+
+        <p class="description">
+            Every love story is beautiful, but ours is
+            the one we will cherish forever.
+        </p>
+
+    </section>
+
+    <!-- Venue -->
+
+    <section class="events">
+
+        <div class="flower">?</div>
+
+        <h2 class="section-title">Where We Celebrate</h2>
+
+        <div class="divider"></div>
+
+        <p class="description">
+            Royal Wedding Venue<br>
+            Jaipur, Rajasthan, India<br>
+            <br>
+            We look forward to celebrating this special day
+            with the people who mean the most to us.
+        </p>
+
+        <!-- Replace # with the actual Google Maps link -->
+
+        <p style="margin-top:30px;">
+            <a
+                href="https://maps.google.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="color:var(--rose);">
+                View Location ?
+            </a>
+        </p>
+
+    </section>
+
+    <!-- RSVP form -->
+
+    <section class="rsvp" id="rsvp">
+
+        <p class="eyebrow">We Hope You Can Join Us</p>
+
+        <h2 class="section-title">Kindly RSVP</h2>
+
+        <p class="description">
+            Please let us know if you will be joining
+            our celebration.
+        </p>
+
+        <form class="rsvp-form" id="rsvpForm">
+
+            <label for="guestName">Your Full Name</label>
+
+            <input
+                type="text"
+                id="guestName"
+                name="guestName"
+                placeholder="Enter your name"
+                required>
+
+            <label for="attendance">Will You Attend?</label>
+
+            <select id="attendance" name="attendance" required>
+                <option value="">Please select</option>
+                <option value="Yes">Joyfully Accept</option>
+                <option value="No">Regretfully Decline</option>
+            </select>
+
+            <label for="guestCount">Number of Guests</label>
+
+            <select id="guestCount" name="guestCount">
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+            </select>
+
+            <label for="guestMessage">A Message For The Couple</label>
+
+            <textarea
+                id="guestMessage"
+                name="guestMessage"
+                placeholder="Write your wishes here..."></textarea>
+
+            <button type="submit" class="rsvp-button">
+                Submit RSVP
+            </button>
+
+            <p id="rsvpMessage" aria-live="polite"></p>
+
+        </form>
+
+    </section>
+
+    <!-- Closing -->
+
+    <footer>
+
+        <div class="flower">?</div>
+
+        <h2>Thank You For Being Part Of Our Story</h2>
+
+        <p style="margin-top:20px;">
+            With love,<br>
+            <span id="footerNames">Nandini & Anirban</span>
+        </p>
+
+        <div class="divider"></div>
+
+        <p style="font-size:12px;">
+            Made with love for a beautiful beginning.
+        </p>
+
+    </footer>
+
+</main>
+
+<!-- Optional background music -->
+
+<audio id="backgroundMusic" loop>
+    <!-- Add your own licensed audio file here:
+    <source src="wedding-music.mp3" type="audio/mpeg">
+    -->
+</audio>
+
+<button
+    class="music-button"
+    id="musicButton"
+    aria-label="Play or pause music"
+    title="Music"
+    style="display:none;">
+    ?
+</button>
+
+<script>
+
+/* ==================================
+   CUSTOMIZE YOUR WEDDING INFORMATION
+   ================================== */
+
+const WEDDING = {
+    partnerOne: "Nandini",
+    partnerTwo: "Anirban",
+
+    // Local date and time: YYYY-MM-DDTHH:MM:SS
+    date: "2026-12-12T19:00:00",
+
+    displayDate: "12 December 2026"
+};
+
+
+/* Update the names and wedding date */
+
+document.getElementById("partnerOne").textContent =
+    WEDDING.partnerOne;
+
+document.getElementById("partnerTwo").textContent =
+    WEDDING.partnerTwo;
+
+document.getElementById("footerNames").textContent =
+    WEDDING.partnerOne + " & " + WEDDING.partnerTwo;
+
+document.getElementById("weddingDateText").textContent =
+    WEDDING.displayDate;
+
+
+/* ==================================
+   OPEN THE ENVELOPE
+   ================================== */
+
+const envelope = document.getElementById("envelope");
+const openButton = document.getElementById("openButton");
+const opening = document.getElementById("opening");
+const invitation = document.getElementById("invitation");
+
+let invitationOpened = false;
+
+function openInvitation() {
+
+    if (invitationOpened) return;
+
+    invitationOpened = true;
+
+    envelope.classList.add("open");
+    openButton.textContent = "Opening Your Invitation...";
+
+    setTimeout(() => {
+
+        opening.style.display = "none";
+        invitation.classList.add("visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        startCountdown();
+
+    }, 1300);
+
+}
+
+openButton.addEventListener("click", openInvitation);
+
+envelope.addEventListener("click", openInvitation);
+
+envelope.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openInvitation();
+    }
+
+});
+
+
+/* ==================================
+   WEDDING COUNTDOWN
+   ================================== */
+
+let countdownInterval;
+
+function startCountdown() {
+
+    const targetDate = new Date(WEDDING.date).getTime();
+
+    function updateCountdown() {
+
+        const now = Date.now();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+
+            document.getElementById("days").textContent = "00";
+            document.getElementById("hours").textContent = "00";
+            document.getElementById("minutes").textContent = "00";
+            document.getElementById("seconds").textContent = "00";
+
+            document.getElementById("countdownMessage")
+                .textContent = "The beautiful day has arrived! ?";
+
+            clearInterval(countdownInterval);
+            return;
+        }
+
+        const days = Math.floor(
+            difference / (1000 * 60 * 60 * 24)
+        );
+
+        const hours = Math.floor(
+            (difference / (1000 * 60 * 60)) % 24
+        );
+
+        const minutes = Math.floor(
+            (difference / (1000 * 60)) % 60
+        );
+
+        const seconds = Math.floor(
+            (difference / 1000) % 60
+        );
+
+        document.getElementById("days").textContent =
+            String(days).padStart(2, "0");
+
+        document.getElementById("hours").textContent =
+            String(hours).padStart(2, "0");
+
+        document.getElementById("minutes").textContent =
+            String(minutes).padStart(2, "0");
+
+        document.getElementById("seconds").textContent =
+            String(seconds).padStart(2, "0");
+
+        document.getElementById("countdownMessage")
+            .textContent = "Until we say, 'I do.' ?";
+    }
+
+    clearInterval(countdownInterval);
+
+    updateCountdown();
+
+    countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+
+/* ==================================
+   OPTIONAL BACKGROUND MUSIC
+   ================================== */
+
+const backgroundMusic =
+    document.getElementById("backgroundMusic");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+musicButton.addEventListener("click", async () => {
+
+    if (backgroundMusic.paused) {
+
+        try {
+            await backgroundMusic.play();
+            musicButton.textContent = "?";
+        } catch (error) {
+            console.error("Unable to play music:", error);
+        }
+
+    } else {
+
+        backgroundMusic.pause();
+        musicButton.textContent = "?";
+
+    }
+
+});
+
+
+/* ==================================
+   RSVP FORM
+   ================================== */
+
+/*
+   IMPORTANT:
+   This demonstration validates the form in the browser.
+   It does NOT save responses to a database or send them
+   to the couple.
+
+   Connect a backend or form service to collect real RSVPs.
+*/
+
+document.getElementById("rsvpForm")
+    .addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("guestName").value.trim();
+
+        const attendance =
+            document.getElementById("attendance").value;
+
+        const message =
+            document.getElementById("guestMessage").value.trim();
+
+        const result =
+            document.getElementById("rsvpMessage");
+
+        if (!name || !attendance) {
+
+            result.textContent =
+                "Please complete the required fields.";
+
+            return;
+        }
+
+        if (attendance === "Yes") {
+
+            result.textContent =
+                "Thank you, " + name +
+                "! We're delighted that you plan to join us. ?";
+
+        } else {
+
+            result.textContent =
+                "Thank you for letting us know, " + name +
+                ". Sending you our love. ?";
+
+        }
+
+        console.log("Demo RSVP:", {
+            name: name,
+            attendance: attendance,
+            guests: document.getElementById("guestCount").value,
+            message: message
+        });
+
+        /*
+           To save RSVPs permanently, send this information
+           to your own secure server or an RSVP service.
+        */
+
+    });
+
+</script>
+
+</body>
+</html>
